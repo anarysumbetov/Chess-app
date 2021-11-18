@@ -47,7 +47,7 @@ export default function Chessboard() {
         const chessboard = chessboardRef.current;
         if (element.classList.contains("chess-piece") && chessboard) {
             setGridX(Math.floor((e.clientX - chessboard.offsetLeft) / 100));
-            setGridY(Math.abs(Math.ceil((e.clientY - chessboard.offsetTop - 504) / 100)));
+            setGridY(Math.abs(Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100)));
             const x = e.clientX - 50;
             const y = e.clientY - 50;
             element.style.position = "absolute";
@@ -59,12 +59,12 @@ export default function Chessboard() {
     }
 
     function movePiece(e: React.MouseEvent) {
-        const chessboard =chessboardRef.current;
+        const chessboard = chessboardRef.current;
         if(activePiece && chessboard){
-            const minX = chessboard.offsetLeft - 15;
-            const minY = chessboard.offsetTop - 15;
-            const maxX = chessboard.offsetLeft + chessboard.clientWidth - 50;
-            const maxY = chessboard.offsetTop + chessboard.clientHeight - 52;
+            const minX = chessboard.offsetLeft - 25;
+            const minY = chessboard.offsetTop - 25;
+            const maxX = chessboard.offsetLeft + chessboard.clientWidth - 75;
+            const maxY = chessboard.offsetTop + chessboard.clientHeight - 75;
             const x = e.clientX - 50;
             const y = e.clientY - 50;
             activePiece.style.position = "absolute";
@@ -98,11 +98,12 @@ export default function Chessboard() {
     }
 
     function dropPiece(e: React.MouseEvent) {
+        console.log(e);
         const chessboard = chessboardRef.current;
         if (activePiece && chessboard) {
             const x = Math.floor((e.clientX - chessboard.offsetLeft) / 100);
             const y = Math.abs(
-                Math.ceil((e.clientY - chessboard.offsetTop - 504) / 100)
+                Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100)
                 );
 
             setPieces((value) => {
@@ -121,13 +122,13 @@ export default function Chessboard() {
 
     let board = [];
 
-    for(let j = verticalAxis.length-1; j >= 0; j--) {
+    for(let j = verticalAxis.length - 1; j >= 0; j--) {
         for(let i = 0; i < horizontalAxis.length; i++) {
             const number = j + i + 2;
             let image = undefined;
 
-            pieces.forEach(p => {
-                if(p.x === i && p.y === j) {
+            pieces.forEach((p) => {
+                if (p.x === i && p.y === j) {
                     image = p.image;
                 }
             });
